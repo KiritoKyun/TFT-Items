@@ -64,6 +64,8 @@ function add_craft_item(x){
     new_item.src = 'icons/tft_item_'+ x + '.tft.png'
     new_item.id = x
     new_item.setAttribute('onmouseover','explanation(\'' + x + '\')')
+    new_item.setAttribute('onclick','choose_item(\'' + x + '\')')
+    new_item.setAttribute('onmouseout','document.getElementById(\'explanation\').innerHTML = \'\'')
     document.getElementById('craftable-items').appendChild(new_item)
 }
 function explanation(x){
@@ -82,4 +84,9 @@ function explanation(x){
     second_img.src = 'icons/icon_' + required_items[crafted_items.indexOf(x)][1] + '.tft.png'
     doc.appendChild(first_img)
     doc.appendChild(second_img)
+}
+function choose_item(x){
+    subtract_item(required_items[crafted_items.indexOf(x)][0])
+    subtract_item(required_items[crafted_items.indexOf(x)][1])
+    document.getElementById('explanation').innerHTML = ''
 }
